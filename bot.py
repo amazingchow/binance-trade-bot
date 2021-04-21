@@ -39,7 +39,7 @@ class BinanceTradeClient():
         buy some quantities of a specific coin, like sym == PHABUSD
         '''
         try:
-            self.cli.order_market_buy(symbol=sym, quoteOrderQty=quantity, recvWindow=200)
+            self.cli.order_market_buy(symbol=sym, quoteOrderQty=quantity, recvWindow=1000)
         except Exception as e:
             logger.error(e)
 
@@ -64,19 +64,19 @@ if __name__ == "__main__":
         time.sleep(2)
     logger.info("binance-trade-bot has got ready!!!")
     
-    # 根据实际情况来修改上新时间, 这里的上新时间为2021年3月16号下午5点整.
-    new_arrival_time = datetime.datetime(2021, 3, 16, 17, 0).timestamp()
+    # 根据实际情况来修改上新时间, 这里的上新时间为2021年4月21号下午6点整.
+    new_arrival_time = datetime.datetime(2021, 4, 21, 18, 0).timestamp()
 
     now = time.time()
     while now < new_arrival_time:
         time.sleep(0.001)
         now = time.time()
 
-    # !!!在现货钱包里只留300 BUSD.
-    # 购入价值300 BUSD的BIFI, 尝试连续购买5次.
+    # !!!在现货钱包里只留900 BUSD.
+    # 购入价值600 BUSD的BAR, 尝试连续购买5次.
     cnt = 0
     while cnt < 6:
-        bot.buy_market_ticker_price("BIFIBUSD", 300)
+        bot.buy_market_ticker_price("BARBUSD", 600)
         time.sleep(0.01)
         cnt += 1
-    
+     
